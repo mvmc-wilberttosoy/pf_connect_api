@@ -19,7 +19,8 @@ const mssqlConfiguration = {
     port: parseInt(process.env.MSSQL_PORT, 10) || 10445,
     options: {
         encrypt: true,
-        trustServerCertificate: true
+        trustServerCertificate: true,
+        connectionTimeout: 30000
     },
     pool: {
         max: 10,
