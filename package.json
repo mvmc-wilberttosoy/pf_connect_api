@@ -13,6 +13,7 @@
   "type": "commonjs",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cloudinary": "^2.11.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
@@ -21,7 +22,8 @@
     "jsonwebtoken": "^9.0.3",
     "mailgun.js": "^14.0.1",
     "mongoose": "^9.10.2",
-    "mssql": "^12.7.2"
+    "mssql": "^12.7.2",
+    "multer": "^2.4.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

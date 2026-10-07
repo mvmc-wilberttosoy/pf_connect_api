@@ -1,19 +1,27 @@
-// errorHandler.js
+const AppError = require('../utilities/application.error.js');
+
+function notFoundHandler(request, response, next) {
+    const error = new AppError(`Cannot find ${request.originalUrl} on this server!`, 404);
+    next(error);
+}
+
 function globalErrorHandler(err, req, res, next) {
     const statusCode = err.statusCode || 500;
 
-    // Log full stack trace for server-side debugging
     if (process.env.NODE_ENV !== "production") {
         console.error(err.stack);
     }
 
-    // Prepare response
+    let clientMessage = err.message || "Internal Server Error";
+    if (statusCode === 500 && process.env.NODE_ENV === "production") {
+        clientMessage = "Something went wrong on our end.";
+    }
+
     const response = {
         success: false,
-        error: err.message || "Internal Server Error"
+        error: clientMessage
     };
 
-    // Include stack trace in response only in non-production environments
     if (process.env.NODE_ENV === "development" || process.env.NODE_ENV === "uat") {
         response.stack = err.stack;
     }
@@ -21,4 +29,7 @@ function globalErrorHandler(err, req, res, next) {
     res.status(statusCode).json(response);
 }
 
-module.exports = globalErrorHandler;
+module.exports = {
+    notFoundHandler,
+    globalErrorHandler
+};

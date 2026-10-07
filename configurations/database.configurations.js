@@ -16,6 +16,8 @@ const mssqlConfiguration = {
     password: process.env.MSSQL_PASSWORD,
     server: process.env.MSSQL_SERVER,
     database: process.env.MSSQL_DATABASE,
+    requestTimeout: 30000,
+    connectionTimeout: 15000,
     options: {
         encrypt: true,
         trustServerCertificate: true

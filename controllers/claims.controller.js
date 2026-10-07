@@ -72,5 +72,4 @@ const getClaims = async (request, response, next) => {
 
 module.exports = {
     getClaims
-}
-
+};
