@@ -68,7 +68,7 @@ const login = async (request, response, next) => {
         response.cookie('refresh', refreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax'
+            sameSite: 'none'
         });
 
         return response.status(200).json({
@@ -127,7 +127,7 @@ const logout = async (request, response, next) => {
             {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production',
-                sameSite: 'lax'
+                sameSite: 'none'
             }
         );
         return response.status(200).json({
